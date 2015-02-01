@@ -20,34 +20,35 @@ class HexagonTile: Tile {
     }
 
     var firstPoint: CGPoint {
-        return CGPointMake(0, hexagonEdgeLength);
+        return CGPointMake(0, hexagonHeight);
     }
 
     var secondPoint: CGPoint {
-        return CGPointMake(hexagonEdgeLength / 2, hexagonEdgeLength + self.hexagonHeight);
+        return CGPointMake(hexagonEdgeLength / 2, hexagonHeight * 2);
     }
 
     var thirdPoint: CGPoint {
-        return CGPointMake(hexagonEdgeLength * 3 / 2, hexagonEdgeLength + self.hexagonHeight);
+        return CGPointMake(hexagonEdgeLength * 1.5, hexagonHeight * 2);
     }
 
     var fourthPoint: CGPoint {
-        return CGPointMake(hexagonEdgeLength * 2, hexagonEdgeLength);
+        return CGPointMake(hexagonEdgeLength * 2, hexagonHeight);
     }
 
     var fifthPoint: CGPoint {
-        return CGPointMake(hexagonEdgeLength * 3 / 2, hexagonEdgeLength - self.hexagonHeight);
+        return CGPointMake(hexagonEdgeLength * 1.5, 0);
     }
 
     var sixthPoint: CGPoint {
-        return CGPointMake(hexagonEdgeLength / 2, hexagonEdgeLength - self.hexagonHeight);
+        return CGPointMake(hexagonEdgeLength / 2, 0);
     }
 
+    //MARK: Initializers
 
     init(hexagonEdgeLength: CGFloat) {
         self.hexagonEdgeLength = hexagonEdgeLength
-
-        super.init(size: CGSizeMake(hexagonEdgeLength * 2, hexagonEdgeLength * 2))
+        var height: CGFloat = HexagonTile.hexagonHeight(hexagonEdgeLength)
+        super.init(size: CGSizeMake(hexagonEdgeLength * 2, height * 2))
     }
 
     required init(coder: NSCoder) {

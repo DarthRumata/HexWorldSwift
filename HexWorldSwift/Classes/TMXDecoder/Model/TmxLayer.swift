@@ -7,8 +7,10 @@ import Foundation
 
 class TmxLayer {
     var name: String = ""
+    var alpha: Float
 
-    init(name: String) {
+    init(name: String, alpha: Float) {
         self.name = name
+        self.alpha = alpha
     }
 }

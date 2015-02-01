@@ -12,8 +12,7 @@ class Tile: SKNode {
 
     init(size: CGSize) {
         super.init()
-        var random = Int(arc4random_uniform(100))
-        self.fillNode = SKSpriteNode(color: UIColor(white: CGFloat(random) / 99.0, alpha: 1.0), size: size)
+        self.fillNode = SKSpriteNode(color: UIColor(white: 1, alpha: 0), size: size)
         self.addChild(self.fillNode)
         self.fillNode.zPosition = -1;
         self.fillNode.name = "transparent";

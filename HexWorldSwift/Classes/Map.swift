@@ -34,13 +34,13 @@ class Map: SKNode {
         return CGFloat(2 * self.model.hexagonEdgeLength);
     }
 
-    var tileYInset: CGFloat {
-       return self.model.hexagonEdgeLength - HexagonTile.hexagonHeight(self.model.hexagonEdgeLength)
+    var tileHeight: CGFloat {
+        return HexagonTile.hexagonHeight(self.model.hexagonEdgeLength) * 2
     }
 
     var mapSize: CGSize {
         return CGSizeMake((self.model.hexagonEdgeLength * 1.5) * CGFloat(self.model.columns) + 0.5 * self.model.hexagonEdgeLength,
-                CGFloat(self.model.rows) * (self.tileEdgeLength - tileYInset * 2) +  self.model.hexagonEdgeLength + self.tileYInset);
+                CGFloat(self.model.rows) * tileHeight + tileHeight / 2)
     }
 
     // MARK: initializers
@@ -65,7 +65,7 @@ class Map: SKNode {
             for column: UInt in 0 ..< self.model.columns {
                 let xPosition: CGFloat = (self.model.hexagonEdgeLength * 1.5) * CGFloat(column) - self.mapSize.width / 2
                 let staggerMultiplier: UInt = MathHelper.isEvenNumber(Int(column)) == (self.model.hexStagger == HexStagger.Even) ? 0 : 1
-                let yPosition: CGFloat = mapSize.height / 2 - (self.model.hexagonEdgeLength - tileYInset) * CGFloat(staggerMultiplier) - (tileEdgeLength - tileYInset * 2) * CGFloat(row) - tileEdgeLength
+                let yPosition: CGFloat = mapSize.height / 2 - (tileHeight / 2) * CGFloat(staggerMultiplier) - tileHeight * CGFloat(row) - tileHeight
 
                 var tile: HexagonTile = HexagonTile(hexagonEdgeLength: self.model.hexagonEdgeLength)
                 tile.position = CGPointMake(xPosition, yPosition)
